@@ -161,7 +161,8 @@ class FriendsController extends Controller
         // 2 būdas
         $friend = Friend::findOrFail($id);
 
-        Storage::delete($friend->photo);
+        Storage::delete($friend->photo->filename);
+        $friend->photo->delete();
 
         $friend->delete();
 
